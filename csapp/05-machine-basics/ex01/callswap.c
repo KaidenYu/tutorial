@@ -9,5 +9,5 @@ int main(void)
 	printf("before swap a=%ld,b=%ld\n",a,b);
 	swap(&a,&b);
 	printf("after swap a=%ld,b=%ld\n",a,b);
-	return 123;
+	return 0;
 }
