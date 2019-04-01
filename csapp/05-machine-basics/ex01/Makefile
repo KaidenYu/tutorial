@@ -7,7 +7,7 @@ SRC = callswap.c swap.s
 all:$(PROG)
 
 $(PROG):$(SRC)
-	$(CC) $(SRC) -o $(PROG)
+	$(CC) $(SRC) -Og -o $(PROG)
 
 .PHONY:clean
 clean:
