@@ -12,15 +12,15 @@
 ---
 #### P6
 - Architecture: (also ISA: instruction set architecture) The parts of a processor design that one needs to understand for writing assembly/machine code.
--- Examples: instruction set specification, registers
+  Examples: instruction set specification, registers
 
 - Microarchitecture: Implementation of the architecture
--- Examples: cache sizes and core frequency
+  Examples: cache sizes and core frequency
 
 - Code Forms:
-1. Machine Code: The byte-level programs that a processor executes
-2. Assembly Code: A text representation of machine code
+  1. Machine Code: The byte-level programs that a processor executes
+  2. Assembly Code: A text representation of machine code
 - Example ISAs:
-1. Intel: x86, IA32, Itanium, x86-64
-2. ARM: Used in almost all mobile phones
-3. RISC V: New open-source ISA
+  1. Intel: x86, IA32, Itanium, x86-64
+  2. ARM: Used in almost all mobile phones
+  3. RISC V: New open-source ISA
