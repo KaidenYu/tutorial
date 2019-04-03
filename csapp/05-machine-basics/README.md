@@ -39,3 +39,9 @@
 ---
 ####  additional info
 ![](https://i.imgur.com/SW0T2xi.png)
+- optimiztion option 
+  - nothing: no optimization, assembly hard to understand
+  - -Og:**basic optimization**
+  - -O1:optimized, also hard to understand
+---
+#### 
