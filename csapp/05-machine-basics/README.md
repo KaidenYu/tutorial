@@ -24,3 +24,17 @@
   1. Intel: x86, IA32, Itanium, x86-64
   2. ARM: Used in almost all mobile phones
   3. RISC V: New open-source ISA
+---
+#### P15
+![](https://i.imgur.com/L4SjCV2.png)
+- PC: Program counter
+  - Address of next instruction
+  - Called “RIP” (x86-64)
+- Register(give them names,not address)
+- Condition codes
+- Memory
+  - Byte addressable array
+  -  Code and user data
+  -  Stack to support procedures
+
+
