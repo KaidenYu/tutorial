@@ -45,9 +45,12 @@
   - -O1:optimized, also hard to understand
 ---
 #### P16
-##### Assembly charactor:data type
-- “Integer” data of 1, 2, 4, or 8 bytes (don't distinguish signed or unsigned)
-  1. Data values
-  2. Addresses (untyped pointers)
-- Floating point data of 4, 8, or 10 bytes
-- (SIMD vector data types of 8, 16, 32 or 64 bytes)
+- Assembly charactor:data type
+  - “Integer” data of 1, 2, 4, or 8 bytes (don't distinguish signed or unsigned)
+    1. Data values
+    2. Addresses (untyped pointers)
+  - Floating point data of 4, 8, or 10 bytes
+  - (SIMD vector data types of 8, 16, 32 or 64 bytes)
+#### additional info
+![](https://i.imgur.com/8NAC3Oz.png)
+![](https://i.imgur.com/kdE4W9o.png)
