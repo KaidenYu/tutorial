@@ -36,5 +36,6 @@
   - Byte addressable array
   -  Code and user data
   -  Stack to support procedures
-
-
+---
+####  additional info
+![](https://i.imgur.com/SW0T2xi.png)
