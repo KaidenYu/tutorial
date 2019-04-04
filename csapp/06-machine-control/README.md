@@ -61,19 +61,60 @@
   
   ![](https://i.imgur.com/XBQyulO.png)
   
-- al,bl, ... where "l" means low
+  - al,bl, ... where "l" means low
 
 
   ![](https://i.imgur.com/ajLADph.png)
+  
+  ![](https://i.imgur.com/6Wr8dCL.png)
+  
+  - movzbl: move with zero extention from byte to long (but automatically set the higher 32bits to zero as well...confusing)
 
 ---
 
+#### P21
+- jX Instructions
+  - Jump to different part of code depending on condition codes
+  
+  ![](https://i.imgur.com/cdsV5Gv.png)
+  
+  - ja: jump above. refer to the "switch Statements"
+
+---
+
+#### P23
+- Conditional Branch
+
+```c
+long absdiff(long x, long y)
+{
+  long result;
+  if (x > y)
+    result = x-y; //blue part of assembly code
+  else
+    result = y-x; //red part of assembly code
+  return result;
+}
+```
+![](https://i.imgur.com/JKmhIop.png)
+
+- expressing with goto code
+```c
+long absdiff_j(long x, long y)
+{
+  long result;
+  int ntest = x <= y;
+  if (ntest) goto Else;
+  result = x-y;
+  goto Done;
+Else:
+  result = y-x;
+Done:
+  return result;
+}
+```
 
 
-
-movzbl: move with zero extention from byte to long
-long word=32 bits
-zero externtion to 32bits but automatically set the higher 32bits to zero as well...confusing
 
 
 conditionval branch vs conditional move
