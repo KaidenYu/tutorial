@@ -4,10 +4,10 @@
 ---
 #### P5
 -why called x86?
->> 8086,386,486... all end with "86"
+> 8086,386,486... all end with "86"
 - 386(1985):First 32 bit Intel processor , referred to as IA32
 - Pentium 4E(2004):First 64-bit Intel x86 processor, referred to as x86-64, can also run 32-bit code
->> some 32-bit program can't run on a 64-bit?why?
+> some 32-bit program can't run on a 64-bit?why?
 - Core 2(2006):First multi-core Intel processor
 ---
 #### P6
@@ -124,7 +124,7 @@
 - leaq src dst
   - leaq = load effective address quad
   - dst has to be a register
-  >> just take it as a arithmatic operation
+  > just take it as a arithmatic operation
 
 ![](https://i.imgur.com/pSNiT4t.png)
 
