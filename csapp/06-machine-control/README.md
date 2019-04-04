@@ -51,7 +51,7 @@
 
 ---
 
-#### P16 P17
+#### P16 - P19
 - Reading Condition Codes
   - Setx instructions
     - Set low-order byte of destination to 0 or 1 based on combinations of condition codes
@@ -61,10 +61,15 @@
   
   ![](https://i.imgur.com/XBQyulO.png)
   
-  l means low
+- al,bl, ... where "l" means low
+
+
+  ![](https://i.imgur.com/ajLADph.png)
+
 ---
 
-#### P
+
+
 
 movzbl: move with zero extention from byte to long
 long word=32 bits
