@@ -45,12 +45,55 @@
   - -O1:optimized, also hard to understand
 ---
 #### P16
-- Assembly charactor:data type
+- Assembly charactor : Data Types
   - “Integer” data of 1, 2, 4, or 8 bytes (don't distinguish signed or unsigned)
     1. Data values
     2. Addresses (untyped pointers)
   - Floating point data of 4, 8, or 10 bytes
   - (SIMD vector data types of 8, 16, 32 or 64 bytes)
+---
 #### additional info
 ![](https://i.imgur.com/8NAC3Oz.png)
 ![](https://i.imgur.com/kdE4W9o.png)
+
+- in ancient days: registers have very specific purposes and the names reflect their purposes
+- now: just legacy names. only 1 special register now -> %rsp. for the most part,other registers are usable for holding program data
+
+#### P19
+- Assembly Characteristics: Operations
+  - Transfer data between memory and register
+    - memory -> register
+    - register -> memory
+  - Perform arithmetic function on register or memory data
+  - Transfer control
+    - Unconditional jumps to/from procedures
+    - Conditional branches
+    - Indirect branches
+---
+
+### P20
+- movq : where "q" stands for quad
+  - q : quad word = 8 bytes
+  - l : long word = 4 bytes
+  - w : word = 2 bytes
+  - b : byte = 1 byte
+
+- movq src dst
+  - immediate
+    - constant interger data
+    - prefixed with ‘$’
+    - Encoded with 1, 2, or 4 bytes
+    > how about 8 bytes?
+  - register
+    - Example: %rax, %r13
+    - %rsp reserved for special use
+    - Others have special uses for particular instructions
+  - memory :
+    - Simplest example: (%rax)
+    - Various other “addressing modes”
+  
+---
+
+
+leaq src dst:dst has to be a register
+leaq = load effective address quad
