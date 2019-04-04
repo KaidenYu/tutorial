@@ -128,24 +128,53 @@
 
 ![](https://i.imgur.com/pSNiT4t.png)
 
-#### P37
+---
+
+#### P37 P39
 - Two Operand Instructions
-  ```
-  addq Src,Dest => Dest = Dest + Src
-  subq Src,Dest => Dest = Dest - Src
-  imulq Src,Dest => Dest = Dest * Src
-  salq Src,Dest => Dest = Dest << Src  (also called shlq)
-  sarq Src,Dest => Dest = Dest >> Src  (Arithmatic)
-  shrq Src,Dest => Dest = Dest >> Src  (Logical)
-  xorq Src,Dest => Dest = Dest ^ Src
-  andq Src,Dest => Dest = Dest & Src
-  orq Src,Dest => Dest = Dest | Src
-  ```
+  - addq Src,Dest => Dest = Dest + Src
+  - subq Src,Dest => Dest = Dest - Src
+  - imulq Src,Dest => Dest = Dest * Src
+  - salq Src,Dest => Dest = Dest << Src  (also called shlq)
+  - sarq Src,Dest => Dest = Dest >> Src  (Arithmatic)
+  - shrq Src,Dest => Dest = Dest >> Src  (Logical)
+  - xorq Src,Dest => Dest = Dest ^ Src
+  - andq Src,Dest => Dest = Dest & Src
+  - orq Src,Dest => Dest = Dest | Src
+  
 - One Operand Instructions
-  ```
-  incq Dest => Dest = Dest + 1
-  decq Dest => Dest = Dest - 1
-  negq Dest => Dest = -Dest
-  notq Dest => Dest = ~Dest
-  ```
+  - incq Dest => Dest = Dest + 1
+  - decq Dest => Dest = Dest - 1
+  - negq Dest => Dest = -Dest
+  - notq Dest => Dest = ~Dest
+  
+---
+
+#### P40
+- Arithmetic Expression Example
+
+```
+long arith
+(long x, long y, long z)
+{
+  long t1 = x+y;
+  long t2 = z+t1;
+  long t3 = x+4;
+  long t4 = y * 48;
+  long t5 = t3 + t4;
+  long rval = t2 * t5;
+  return rval;
+}
+```
+
+```
+arith:
+  leaq (%rdi,%rsi), %rax     # t1
+  addq %rdx, %rax            # t2
+  leaq (%rsi,%rsi,2), %rdx   
+  salq $4, %rdx              # t4
+  leaq 4(%rdi,%rdx), %rcx    # t5
+  imulq %rcx, %rax           # rval
+  ret
+```
 
