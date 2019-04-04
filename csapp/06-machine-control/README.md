@@ -82,7 +82,7 @@
 
 ---
 
-#### P23
+#### P23 - P25
 - Conditional Branch
 
 ```c
@@ -114,8 +114,27 @@ Done:
 }
 ```
 
+- General Conditional Expression Translation
+  - Create separate code regions for then & else expressions
+  - Execute appropriate one
+  
+```c
+val = Test ? Then_Expr : Else_Expr;
+```
+```c
+  ntest = !Test;
+  if (ntest) goto Else;
+  val = Then_Expr;
+  goto Done;
+Else:
+  val = Else_Expr;
+Done:
+  ...
+```
+---
 
-
+#### P26
+- Conditional Moves
 
 conditionval branch vs conditional move
 
