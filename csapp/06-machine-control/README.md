@@ -51,11 +51,32 @@
 
 ---
 
+#### P16 P17
+- Reading Condition Codes
+  - Setx instructions
+    - Set low-order byte of destination to 0 or 1 based on combinations of condition codes
+    - Does not alter remaining 7 bytes
+
+  ![](https://i.imgur.com/KY5ZHGc.png)
+  
+  ![](https://i.imgur.com/XBQyulO.png)
+  
+  l means low
+---
 
 #### P
+
+movzbl: move with zero extention from byte to long
+long word=32 bits
+zero externtion to 32bits but automatically set the higher 32bits to zero as well...confusing
+
+
+conditionval branch vs conditional move
+
+ja -> jump above , unsigned
+
 ---
-#### P
----
+
 #### P
 ---
 #### P
