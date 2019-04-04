@@ -59,6 +59,8 @@
 - in ancient days: registers have very specific purposes and the names reflect their purposes
 - now: just legacy names. only 1 special register now -> %rsp. for the most part,other registers are usable for holding program data
 
+---
+
 #### P19
 - Assembly Characteristics: Operations
   - Transfer data between memory and register
@@ -71,7 +73,7 @@
     - Indirect branches
 ---
 
-### P20
+#### P20
 - movq : where "q" stands for quad
   - q : quad word = 8 bytes
   - l : long word = 4 bytes
@@ -93,7 +95,30 @@
     - Various other “addressing modes”
   
 ---
+#### P21
+![](https://i.imgur.com/Rvt4LMU.png)
+- memory-memory transfer need two instructions
+  - memory[address] to register
+  - register to memry[address]
+---
 
+#### P31 P32
+- Memory Addressing Modes
+  - Normal: (R) = Mem[Reg[R]]
+  - Displacement: D(R) = Mem[Reg[R]+D]
+  - General Form: D(Rb,Ri,S) = Mem[Reg[Rb]+S*Reg[Ri]+ D]
+    - D: “displacement” means offset
+    - Rb: "base" any of 16 registers
+    - Ri: "index" any, except %rsp
+    - S: "Scale" 1,2,4 or 8
+    # special case:
+      - (Rb,Ri) = Mem[Reg[Rb]+Reg[Ri]]
+      - D(Rb,Ri) = Mem[Reg[Rb]+Reg[Ri]+D]
+      - (Rb,Ri,S) = Mem[Reg[Rb]+S*Reg[Ri]]
+      - (,Ri,S) = Mem[S*Reg[Ri]]
+![](https://i.imgur.com/wXb6I7X.png) 
+
+---
 
 leaq src dst:dst has to be a register
 leaq = load effective address quad
