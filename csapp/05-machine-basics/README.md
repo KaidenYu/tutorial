@@ -116,9 +116,36 @@
       - D(Rb,Ri) = Mem[Reg[Rb]+Reg[Ri]+D]
       - (Rb,Ri,S) = Mem[Reg[Rb]+S*Reg[Ri]]
       - (,Ri,S) = Mem[S*Reg[Ri]]
+      
 ![](https://i.imgur.com/wXb6I7X.png) 
 
 ---
+#### P36
+- leaq src dst
+  - leaq = load effective address quad
+  - dst has to be a register
+  > just take it as a arithmatic operation
 
-leaq src dst:dst has to be a register
-leaq = load effective address quad
+![](https://i.imgur.com/pSNiT4t.png)
+
+#### P37
+- Two Operand Instructions
+  ```
+  addq Src,Dest => Dest = Dest + Src
+  subq Src,Dest => Dest = Dest - Src
+  imulq Src,Dest => Dest = Dest * Src
+  salq Src,Dest => Dest = Dest << Src  (also called shlq)
+  sarq Src,Dest => Dest = Dest >> Src  (Arithmatic)
+  shrq Src,Dest => Dest = Dest >> Src  (Logical)
+  xorq Src,Dest => Dest = Dest ^ Src
+  andq Src,Dest => Dest = Dest & Src
+  orq Src,Dest => Dest = Dest | Src
+  ```
+- One Operand Instructions
+  ```
+  incq Dest => Dest = Dest + 1
+  decq Dest => Dest = Dest - 1
+  negq Dest => Dest = -Dest
+  notq Dest => Dest = ~Dest
+  ```
+
