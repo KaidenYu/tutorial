@@ -395,29 +395,23 @@ ja -> jump above , unsigned
   ![](https://i.imgur.com/MtI5tnK.png)
 
   ![](https://i.imgur.com/m5SSYm9.png)
+  
+    - in case 3, w need to be initialized, in case 2 doesen't
+    - using "merge:"
 
   ![](https://i.imgur.com/xiDYXLC.png)
+  
+    - in both case 5 and case 6, w need to be initialized
+    - no need to create a "merge:" block
 
+---
 
+#### P57 - P59
 
----
-#### P
----
-#### P
----
-#### P
----
-#### P
----
-#### P
----
-#### P
----
-#### P
----
-#### P
----
-#### P
----
-#### P
+![](https://i.imgur.com/5grdyH7.png)
+
+![](https://i.imgur.com/kJUoOzh.png)
+
+![](https://i.imgur.com/2PKp00d.png)
+
 ---
