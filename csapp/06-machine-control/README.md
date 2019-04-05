@@ -188,7 +188,7 @@ ja -> jump above , unsigned
 
 ---
 
-#### P30
+#### P30 - P39
 - Exercise
 
 ![](https://i.imgur.com/7WGCmDd.png)
@@ -276,14 +276,120 @@ ja -> jump above , unsigned
   
   ![](https://i.imgur.com/8Etnm3E.png)
   
+---
+
+#### P40 - P44
+- For Loop
+  - Example:
+    - C code
+    ```c
+    #define WSIZE 8*sizeof(int)
+    long pcount_for(unsigned long x)
+    {
+      size_t i;
+      long result = 0;
+      for (i = 0; i < WSIZE; i++)
+      {
+        unsigned bit =
+          (x >> i) & 0x1;
+        result += bit;
+      }
+      return result;
+    }
+    ```
+    - while goto version
+    ```c
+    long pcount_for_while(unsigned long x)
+    {
+      size_t i;
+      long result = 0;
+      i = 0;
+      while (i < WSIZE)
+      {
+        unsigned bit =
+          (x >> i) & 0x1;
+        result += bit;
+        i++;
+      }
+      return result;
+    }
+    ```
+    - do-while goto version
+    ```c
+    long pcount_for_goto_dw(unsigned long x) 
+    {
+      size_t i;
+      long result = 0;
+      i = 0;
+      if (!(i < WSIZE)) //this two lines of check and goto could be removed
+        goto done;      //cause compiler knows that i=0 
+    loop:
+      unsigned bit =
+        (x >> i) & 0x1; 
+      result += bit;
+      i++; 
+      if (i < WSIZE)
+        goto loop;
+    done:
+      return result;
+    }
+    ```
+  - general translation
   
-
+  ![](https://i.imgur.com/YGplXxW.png)
 
 
 ---
-#### P
----
-#### P
+
+#### P45
+- Switch Statement
+  - Example:
+  ```c
+  long switch_eg
+  (long x, long y, long z)
+  {
+    long w = 1;
+    switch(x) {
+      case 1:
+        w = y*z;
+        break;
+      case 2:
+        w = y/z;
+        /* Fall Through */
+      case 3:
+        w += z;
+        break;
+      case 5:
+      case 6:
+        w -= z;
+        break;
+      default:
+        w = 2;
+    }
+    return w;
+  }
+  ```
+    - Multiple case labels: 5 & 6
+    - Fall through cases: 2
+    - Missing cases: 4
+  
+  ![](https://i.imgur.com/fj5N9a1.png)
+  
+  ![](https://i.imgur.com/ektHKXY.png)
+
+  ![](https://i.imgur.com/ektHKXY.png)
+
+    - Table Structure
+      - Each target requires 8 bytes (64bit cpu)
+      - Base address at .L4
+    - Jumping
+      1. Direct: ja .L8 (for x<0 & x>6) 
+        - Jump target is denoted by label .L8
+      2. Indirect: jmp *.L4(,%rdi,8)  (for 0 ≤ x ≤ 6)
+        - Start of jump table: .L4
+        - Must scale by factor of 8 (addresses are 8 bytes)
+        - Fetch target from effective Address .L4 + x*8
+
 ---
 #### P
 ---
