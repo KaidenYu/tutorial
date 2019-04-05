@@ -84,6 +84,8 @@
 
 #### P23 - P25
 - Conditional Branch
+- command line: gcc –Og -S –fno-if-conversion control.c
+  - –fno-if-conversion: disable predication(not all), so we can see the branch in assembly code
 
 ```c
 long absdiff(long x, long y)
@@ -133,20 +135,151 @@ Done:
 ```
 ---
 
-#### P26
+#### P26 - P28
 - Conditional Moves
+  - Instruction supports:
+    - if(Test) Dest <- Src
+    - Ex. cmovle %rdx %rax # if <=, then move
+  - Supported in post-1995 x86 processors
+  - GCC tries to use them if known to be safe
+- Why Conditional Moves?
+  - Branches are very disruptive to instruction flow through pipelines
+  - Conditional moves do not require control transfer
 
-conditionval branch vs conditional move
+```c
+long absdiff(long x, long y)
+{
+  long result;
+  if (x > y)
+    result = x-y;
+  else
+    result = y-x;
+  return result;
+}
+```
+![](https://i.imgur.com/rfOQuRM.png)
+
+![](https://i.imgur.com/kvefjkG.png)
+
+```c
+val = Test ? Then_Expr : Else_Expr;
+```
+```
+  result = Then_Expr ;
+  eval = Else_Expr;
+  nt = !Test;
+  if (nt) result = eval;
+  return result;
+```
+
+
+- Bad Case for Conditional Move
+  1. Expensive Computations (bad performance)
+    - since both values get computed, only makes sense when computations are very simple 
+    - Ex. val= Test(x) ? Hard1(x):Hard2(x)
+  2. Risky Computations (unsafe)
+    - may have undesirable effects 
+    - Ex. val = p ? *p : 0
+  3. Computations with side effects
+    - Ex. val = x > 0 ? x*=7 : x+=3;
+
 
 ja -> jump above , unsigned
 
 ---
 
-#### P
+#### P30
+- Exercise
+
+![](https://i.imgur.com/7WGCmDd.png)
+
+
 ---
-#### P
+
+#### P32 - P36
+- Do-while Loop
+  - Example:
+    - C code
+    ```c
+    long pcount_do(unsigned long x) 
+    {
+      long result = 0;
+      do {
+        result += x & 0x1;
+        x >>= 1;
+      } while (x);
+      return result;
+    }
+    ```
+    - goto version
+    ```c
+    long pcount_goto(unsigned long x) 
+    {
+      long result = 0;
+    loop:
+      result += x & 0x1;
+      x >>= 1;
+      if(x) goto loop;
+      return result;
+    }
+    ```
+  - general translation
+  
+  ![](https://i.imgur.com/NSU82XT.png)
+
 ---
-#### P
+
+#### P37
+- While Loop
+  - Example:
+    - C code
+    ```c
+    long pcount_while(unsigned long x)
+    {
+      long result = 0;
+      while (x) {
+       result += x & 0x1;
+        x >>= 1;
+      }
+      return result;
+    }
+    ```
+    - goto version
+    ```
+    long pcount_goto_jtm(unsigned long x)
+    {
+      long result = 0;
+      goto test;
+    loop:
+      result += x & 0x1;
+      x >>= 1;
+    test:
+      if(x) goto loop;
+      return result;
+    }
+    ```
+    - do-while goto version
+    ```
+    long pcount_goto_dw(unsigned long x)
+    {
+      long result = 0;
+      if (!x) goto done;
+    loop:
+      result += x & 0x1;
+      x >>= 1;
+      if(x) goto loop;
+    done:
+      return result;
+    }
+    ```
+  - general translation
+  
+  ![](https://i.imgur.com/8Etnm3E.png)
+  
+  
+
+
+
 ---
 #### P
 ---
