@@ -341,7 +341,7 @@ ja -> jump above , unsigned
 
 ---
 
-#### P45
+#### P45 - P54
 - Switch Statement
   - Example:
   ```c
@@ -377,7 +377,8 @@ ja -> jump above , unsigned
   
   ![](https://i.imgur.com/ektHKXY.png)
 
-  ![](https://i.imgur.com/ektHKXY.png)
+  ![](https://i.imgur.com/qGPzMOR.png)
+
 
     - Table Structure
       - Each target requires 8 bytes (64bit cpu)
@@ -389,6 +390,15 @@ ja -> jump above , unsigned
         - Start of jump table: .L4
         - Must scale by factor of 8 (addresses are 8 bytes)
         - Fetch target from effective Address .L4 + x*8
+  ![](https://i.imgur.com/CiAu06L.png)
+
+  ![](https://i.imgur.com/MtI5tnK.png)
+
+  ![](https://i.imgur.com/m5SSYm9.png)
+
+  ![](https://i.imgur.com/xiDYXLC.png)
+
+
 
 ---
 #### P
