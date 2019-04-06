@@ -20,6 +20,11 @@
 
 ---
   
-#### P4 -P5
-- Memory Allocation Example
-- 
+#### P4 -P6
+- Memory Allocation Example [ex01](https://github.com/KaidenYu/tutorial/tree/master/csapp/09-machine-advanced/ex01)
+- Runaway Stack Example [ex02](https://github.com/KaidenYu/tutorial/tree/master/csapp/09-machine-advanced/ex02)
+
+---
+
+#### P8
+- Memory Referencing Bug [ex03](https://github.com/KaidenYu/tutorial/tree/master/csapp/09-machine-advanced/ex02)
