@@ -160,7 +160,7 @@
         extern int g;
         static int init = 0;
       ```
-      c1.c
+      - c1.c
       ```c
       #include "global.h"
       int f()
@@ -168,7 +168,7 @@
         ...
       }
       ```
-      c2.c
+      - c2.c
       ```c
       #define INITIALIZE
       #include "global.h"
