@@ -42,6 +42,11 @@ zip_dig ucb = { 9, 4, 7, 2, 0 };
 - char (*(*x)[])(int, int); // x: a pointer to array[] of pointer to function(int,int) returning char
 ```
 
+- tool: cdecl
+
+![](https://i.imgur.com/ldXYqSb.png)
+
+
 ---
 
 #### P20
