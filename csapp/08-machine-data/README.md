@@ -83,8 +83,42 @@ zip_dig ucb = { 9, 4, 7, 2, 0 };
 
 ---
 
-####
+#### P44
+
+![](https://i.imgur.com/LtPXp7E.png)
+
+![](https://i.imgur.com/3odh7Ku.png)
+
+![](https://i.imgur.com/uFUlmzr.png)
+
+---
+
+#### P52 - P57
+- x87 FP
+  - Legacy, very ugly
+- SSE FP
+  - Supported by Shark machines
+  - Special case use of vector instructions
+- AVX FP
+  - Newest version
+  - Similar to SSE (but registers are 32 bytes instead of 16)
+  - Documented in book
 
 
+![](https://i.imgur.com/G8PtObp.png)
 
+![](https://i.imgur.com/txCqrpr.png)
 
+![](https://i.imgur.com/MiUoWp9.png)
+
+![](https://i.imgur.com/B1dQst0.png)
+
+- FP Code
+  - Lots of instructions
+    - Different operations, different formats, ...
+  - Floating-point comparisons
+    - Instructions **ucomiss** and **ucomisd**
+    - Set condition codes CF, ZF, and PF
+  - Using constant values
+    - Set XMM0 register to 0 with instruction xorpd %xmm0, %xmm0
+    - Others loaded from memory
