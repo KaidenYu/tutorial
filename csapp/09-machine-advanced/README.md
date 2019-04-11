@@ -21,6 +21,13 @@
 ---
   
 #### P4 -P6
+
+![](https://i.imgur.com/3CF15zU.png)
+
+![](https://i.imgur.com/mOL47yX.png)
+
+![](https://i.imgur.com/NlQjzxA.png)
+
 - Memory Allocation Example [ex01](https://github.com/KaidenYu/tutorial/tree/master/csapp/09-machine-advanced/ex01)
 - Runaway Stack Example [ex02](https://github.com/KaidenYu/tutorial/tree/master/csapp/09-machine-advanced/ex02)
 
