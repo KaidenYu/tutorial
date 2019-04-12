@@ -90,4 +90,4 @@ Reduce frequency with which computation performed
 
 
 register renaming & prediction
-  
+https://en.wikipedia.org/wiki/Register_renaming
