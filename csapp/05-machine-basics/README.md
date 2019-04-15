@@ -1,6 +1,6 @@
 #### P4
-- Complex instruction set computer (CISC) - x86
-- Reduced Instruction Set Computers (RISC) - ARM
+- Complex Instruction Set Computer (CISC) - x86
+- Reduced Instruction Set Computer (RISC) - ARM
 ---
 #### P5
 -why called x86?
@@ -148,6 +148,14 @@
   - negq Dest => Dest = -Dest
   - notq Dest => Dest = ~Dest
   
+  ![](https://i.imgur.com/gQF8j5g.png)
+
+  ![](https://i.imgur.com/0ULM5VO.png)
+  
+  [reference: artihmatic shift vs logical shift](https://open4tech.com/logical-vs-arithmetic-shift/)
+  
+  [reference:~ ! -](https://stackoverflow.com/questions/11572181/not-vs-negation)
+  
 ---
 
 #### P40
@@ -177,4 +185,11 @@ arith:
   imulq %rcx, %rax           # rval
   ret
 ```
+
+---
+
+#### P46
+
+![](https://i.imgur.com/8Apgs32.png)
+
 
