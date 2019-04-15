@@ -188,7 +188,7 @@ ja -> jump above , unsigned
 
 ---
 
-#### P30 - P39
+#### P30
 - Exercise
 
 ![](https://i.imgur.com/7WGCmDd.png)
@@ -244,7 +244,7 @@ ja -> jump above , unsigned
       return result;
     }
     ```
-    - goto version
+    - goto version (difference from do-while loop: "goto test" and "test:")
     ```
     long pcount_goto_jtm(unsigned long x)
     {
@@ -253,7 +253,7 @@ ja -> jump above , unsigned
     loop:
       result += x & 0x1;
       x >>= 1;
-    test:
+   test:
       if(x) goto loop;
       return result;
     }
