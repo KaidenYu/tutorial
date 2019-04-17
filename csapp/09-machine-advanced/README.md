@@ -61,5 +61,25 @@
   ![](https://i.imgur.com/gITMsBs.png)
 
   ![](https://i.imgur.com/ghIvj3g.png)
+  
+  - segmentation fault happen when return from echo to call_echo, so the puts(buf) in echo() will execute and printout what you enter before sementation fault shows
+  
+  ![](https://i.imgur.com/Ozt7WxA.png)
+  
+[reference:EOF '\0'](https://stackoverflow.com/questions/4705968/what-is-value-of-eof-and-0-in-c)
+
+#### P22
+
+[reference:enter ascii code]:(https://askubuntu.com/questions/88347/how-can-i-type-ascii-characters-like-alt-numpad-in-windows)
+[reference:ascii unicode mapping]:(http://ascii-table.com/ascii.php)
 
 
+#### P30
+
+```c
+mov %fs:0x28,%rax
+...
+xor %fs:0x28,%rax
+```
+
+[reference](https://unix.stackexchange.com/questions/453749/what-sets-fs0x28-stack-canary)
