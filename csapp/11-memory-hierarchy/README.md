@@ -66,3 +66,17 @@ flash translation layer:firmware(like the disk controller on hard disk)
       - processor design hit the power wall: power consumption is proportional to frequency (the higer the frequency, the more power you comsume)
       - 2003 the processor that intel is ready to ship was going to burn 800W power with gigantic heat sink about 4 square inches
       - put more processor cores onto the chips
+
+---
+
+#### P48
+- Principle of Locality:
+  1. Temporal locality: recently referenced items are likely to be **referenced again** in the near future
+    i. Data
+    ii. Instruction
+  2. Spatial locality: item with **nearby addresses** tend to be referenced close together in time
+    i. Data
+    ii. Instruction
+ 
+ 
+  
