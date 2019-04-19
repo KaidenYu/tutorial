@@ -36,3 +36,21 @@
 - typical
   - Write-through + No-write-allocate
   - **Write-back + Write-allocate**
+
+---
+
+#### P47 - P53
+
+![](https://i.imgur.com/ADq4gz3.png)
+
+![](https://i.imgur.com/qim1HB0.png)
+
+![](https://i.imgur.com/dFI5KmC.png)
+
+![](https://i.imgur.com/WqaY4Jl.png)
+
+![](https://i.imgur.com/2LydBa8.png)
+
+![](https://i.imgur.com/Is6oH2k.png)
+
+![](https://i.imgur.com/rzEUwxW.png)
