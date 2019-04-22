@@ -50,7 +50,13 @@
     2. private address space
         - each program seems to have exclusive use of main memory
         - provided by kernel mechanism called **virtual memory**
-        
+
+- [reference:process](https://hackmd.io/s/Sk1SKdSxx)
+
+- [reference:process startup after boot](https://unix.stackexchange.com/questions/212671/process-startup-after-boot)
+
+- [reference:process chinese](http://wanggen.myweb.hinet.net/ach6/ach6.html)
+
 ---
 
 #### P20
