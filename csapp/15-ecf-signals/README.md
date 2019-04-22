@@ -182,7 +182,14 @@ while ((pid = wait(NULL)) > 0)
   
   - comment sleep(2); //let parent slower than child by purpose, or the bug won't(hard to?) occur
     - bug won't(hard to?) occur
-    - time_spent is incorrect (very short. won't sleep 5 seconds, probably because SIGCHLD are handled while sleep?)
+    - time_spent is incorrect
+      - time_spent is a incorrect number. for example it prints sleep 3250 ms ,but actually its only about 1 second
+      - only sleep a very short time. won't sleep 5 seconds
+      - probably because interrupt by SIGCHLD handler while sleep?)
+    
+    - ![](https://i.imgur.com/qCZkxsP.png)
+
+
 
   ```C
   //code without races
@@ -220,4 +227,8 @@ while ((pid = wait(NULL)) > 0)
       exit(0);
   }
   ```
+  - prevent from triggering handler before addjob(pid)
   - ![](https://i.imgur.com/YcbNEpN.png)
+  
+  
+  > child won't be triggered by SIGCHLD!!!(video is wrong???)
