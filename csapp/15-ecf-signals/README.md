@@ -133,4 +133,91 @@ while ((pid = wait(NULL)) > 0)
 ```
 - If any process has no child process then wait() returns immediately “-1”.
 - [reference](https://www.geeksforgeeks.org/wait-system-call-c/)
+
+---
+
+#### P64
+- Some interrupted system calls can return with errno == EINTR
+  - slow system call such as read can be interrupted
   
+---
+
+#### P53 - P55
+- avoid races
+  - can't assumes parent runs before child
+  
+  ```C
+  //code with races
+  #define N 5
+  int main(int argc, char **argv)
+  {
+      int pid;
+      sigset_t mask_all, prev_all;
+      int n = N;
+
+      Sigfillset(&mask_all);
+      Signal(SIGCHLD, handler);
+      initjobs(); /* Initialize the job list */
+
+      while (n--) {
+          if ((pid = Fork()) == 0) { /* Child process */
+              //sleep(2);
+              Execve("/bin/date", argv, NULL);
+          }
+          sleep(2); //let parent slower than child by purpose, or the bug won't(hard to?) occur
+          Sigprocmask(SIG_BLOCK, &mask_all, &prev_all); /* Parent process */  
+          addjob(pid);  /* Add the child to the job list */
+          Sigprocmask(SIG_SETMASK, &prev_all, NULL);    
+      }
+      clock_t begin = clock();
+      sleep(5); // let parent live longer or it exit(0) before trigger handler
+      clock_t end = clock();
+      double time_spent = (double)(end - begin) ;//in microseconds
+      printf("sleep %d ms ...bye\n",time_spent);
+      exit(0);
+  }
+  ```
+  - ![](https://i.imgur.com/VZ272ij.png)
+  
+  
+  - comment sleep(2); //let parent slower than child by purpose, or the bug won't(hard to?) occur
+    - bug won't(hard to?) occur
+    - time_spent is incorrect (very short. won't sleep 5 seconds, probably because SIGCHLD are handled while sleep?)
+
+  ```C
+  //code without races
+  #define N 5
+  int main(int argc, char **argv)
+  {
+      int pid;
+      sigset_t mask_all, mask_one, prev_one;
+      int n = N;
+
+      Sigfillset(&mask_all);
+      Sigemptyset(&mask_one);
+      Sigaddset(&mask_one, SIGCHLD);
+      Signal(SIGCHLD, handler);
+      initjobs(); /* Initialize the job list */
+
+      while (n--) {
+          Sigprocmask(SIG_BLOCK, &mask_one, &prev_one); /* Block SIGCHLD */
+          if ((pid = Fork()) == 0) { /* Child process */
+              Sigprocmask(SIG_SETMASK, &prev_one, NULL); /* Unblock SIGCHLD */
+              Execve("/bin/date", argv, NULL);
+          }
+          sleep(2);
+          Sigprocmask(SIG_BLOCK, &mask_all, NULL); /* Parent process */  
+          addjob(pid);  /* Add the child to the job list */
+          Sigprocmask(SIG_SETMASK, &prev_one, NULL);  /* Unblock SIGCHLD */
+      }
+      printf("sleep to keep parent alive longer\n");
+
+      clock_t begin = clock();
+      sleep(5);
+      clock_t end = clock();
+      double time_spent = (double)(end - begin) ;//in microseconds
+      printf("sleep %d ms ...bye\n",time_spent);
+      exit(0);
+  }
+  ```
+  - ![](https://i.imgur.com/YcbNEpN.png)
