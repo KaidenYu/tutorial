@@ -209,7 +209,7 @@ while ((pid = wait(NULL)) > 0)
       while (n--) {
           Sigprocmask(SIG_BLOCK, &mask_one, &prev_one); /* Block SIGCHLD */
           if ((pid = Fork()) == 0) { /* Child process */
-              Sigprocmask(SIG_SETMASK, &prev_one, NULL); /* Unblock SIGCHLD */
+              Sigprocmask(SIG_SETMASK, &prev_one, NULL); /* Unblock SIGCHLD */ //cause the child might create its own child
               Execve("/bin/date", argv, NULL);
           }
           sleep(2);
@@ -232,3 +232,94 @@ while ((pid = wait(NULL)) > 0)
   
   
   > child won't be triggered by SIGCHLD!!!(video is wrong???)
+
+---
+
+#### P56
+- Explicitly Waiting for Signals
+
+  ```C
+  volatile sig_atomic_t pid;
+  void sigchld_handler(int s) // explicitly waiting for SIGCHLD to arrive
+  {
+    int olderrno = errno;
+    pid = Waitpid(-1, NULL, 0); /* Main is waiting for nonzero pid */
+    errno = olderrno;
+  }
+  void sigint_handler(int s)
+  {
+  }
+  ```
+
+  ```C
+  int main(int argc, char **argv) {
+    sigset_t mask, prev;
+    int n = N; /* N = 10 */
+    Signal(SIGCHLD, sigchld_handler);
+    Signal(SIGINT, sigint_handler);
+    Sigemptyset(&mask);
+    Sigaddset(&mask, SIGCHLD);
+
+    while (n--) {
+      Sigprocmask(SIG_BLOCK, &mask, &prev); /* Block SIGCHLD */
+      if (Fork() == 0) /* Child */
+        exit(0);
+      /* Parent */
+      pid = 0;
+      Sigprocmask(SIG_SETMASK, &prev, NULL); /* Unblock SIGCHLD */
+
+      /* Wait for SIGCHLD to be received (correct but wasteful!) */
+      while (!pid) //if catching signals other than SIGCHLD, the pid will remain 0 and the while loop goes on
+        ;
+      /* Do some work after receiving SIGCHLD */
+      printf(".");
+    }
+  printf("\n");
+  exit(0);
+  }
+  ```
+
+  ```C
+  while (!pid) /* Race! */
+    pause(); //catching SIGCHLD between while(!pid) and pause() might occur dead lock (unless other signal is recieced after that happend)
+  ```
+
+  ```C
+  while (!pid) /* Too slow! */
+    sleep(1);
+  ```
+- sigsuspend
+  - Equivalent to atomic (uninterruptable) version of:
+  ```C
+  sigprocmask(SIG_BLOCK, &mask, &prev);
+  pause();
+  sigprocmask(SIG_SETMASK, &prev, NULL);
+  ```
+
+```C
+int main(int argc, char **argv) {
+  sigset_t mask, prev;
+  int n = N; /* N = 10 */
+  Signal(SIGCHLD, sigchld_handler);
+  Signal(SIGINT, sigint_handler);
+  Sigemptyset(&mask);
+  Sigaddset(&mask, SIGCHLD);
+  
+  while (n--) {
+    Sigprocmask(SIG_BLOCK, &mask, &prev); /* Block SIGCHLD */
+    if (Fork() == 0) /* Child */
+      exit(0);
+      
+    /* Wait for SIGCHLD to be received */
+    pid = 0;
+    while (!pid)
+      Sigsuspend(&prev);
+    /* Optionally unblock SIGCHLD */
+    Sigprocmask(SIG_SETMASK, &prev, NULL);
+    /* Do some work after receiving SIGCHLD */
+    printf(".");
+  }
+  printf("\n");
+  exit(0);
+}
+```
