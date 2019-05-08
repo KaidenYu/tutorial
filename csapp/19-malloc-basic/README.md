@@ -76,7 +76,11 @@
   - trick: When blocks are aligned, some low-order address bits are always 0, use one(some) of them as allocated/free flag(s)
     - e.g. 16-byte alignment indicates that size is multiple of 16(16,32,46...), so the low-order 4 bits are all zero
 
+---
 
+#### P36
+- Boundary tag needed only for free blocks
+- use another lower 0 bit as previous block allocated/free flag
 
 
 
