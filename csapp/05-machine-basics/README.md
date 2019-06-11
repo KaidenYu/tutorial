@@ -192,4 +192,14 @@ arith:
 
 ![](https://i.imgur.com/8Apgs32.png)
 
+---
 
+#### additional info
+- .c to .s
+  ```
+  gcc -Og -S
+  ```
+- .s to .o
+  ```
+  gcc -c
+  ```
