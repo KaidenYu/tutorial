@@ -253,7 +253,7 @@ ja -> jump above , unsigned
     loop:
       result += x & 0x1;
       x >>= 1;
-   test:
+    test:
       if(x) goto loop;
       return result;
     }
